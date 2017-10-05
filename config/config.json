@@ -1,0 +1,8 @@
+{
+	"password": "ucsandiego",
+	"username": "test",
+	"databaseURL": "http://jmalani.t2.ucsd.edu:8086",
+	"metrics": ["Running", "Held", "Idle"],
+	"databaseName": "Glidein",
+	"measurementName": "Metrics"
+}
