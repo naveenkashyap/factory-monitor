@@ -2,3 +2,4 @@
 *.swo
 *.pyc
 outbox.txt
+monitor_output.txt

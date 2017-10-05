@@ -15,9 +15,21 @@ class Client:
 		values = {'q': query,
 			  'u': self.database_username,
 			  'p': self.database_password }
-		data = urllib.urlencode(values)
-		req = urllib2.Request(url, data)
+		url += urllib.urlencode(values)
+		req = urllib2.Request(url)
 		resp = urllib2.urlopen(req)
+		print resp
 		# TODO error handle
 
-	#def send_data(self):
+	def post(self, data):
+		url = self.database_url + "/write?"
+		values = {'db': self.database_name,
+			  'precision': 's',
+			  'u': self.database_username,
+			  'p': self.database_password }
+		url += urllib.urlencode(values)
+		req = urllib2.Request(url, data)
+		resp = urllib2.urlopen(req)
+		print resp
+		# TODO error handle
+		

@@ -28,4 +28,7 @@ class Config:
 		return self.data['measurementName']
 
 	def get_current_factory_name(self):
-		return os.environ['HOSTNAME'].split('.')[0]
+		try:
+			return os.environ['HOSTNAME'].split('.')[0]
+		except KeyError as e:
+			print e
