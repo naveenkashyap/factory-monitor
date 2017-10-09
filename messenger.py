@@ -8,10 +8,21 @@ class Messenger:
 		self.measurement_name = config.get_measurement_name()
 		self.current_factory = config.get_current_factory_name()
 		self.dir_path = os.path.dirname(os.path.realpath(__file__))
+		self.database_name = config.get_database_name()
 
 class InfluxMessenger(Messenger):
 	def __init__(self, config):
 		Messenger.__init__(self,config)
+
+	def push_failure(self, error_name):
+		
+		# create database
+		self.httpclient.create_database(self.database_name)
+		
+		line = "Health,errorname=" + error_name + " value=1"
+
+		self.httpclient.post(line)
+
 
 	def push(self, factory_data):
 
@@ -19,7 +30,7 @@ class InfluxMessenger(Messenger):
 		self.save_to_outbox(factory_data)
 
 		# create database
-		self.httpclient.create_database()
+		self.httpclient.create_database(self.database_name)
 
 		# send outbox file to influx
 		self.push_outbox()

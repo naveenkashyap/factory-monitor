@@ -9,8 +9,11 @@ class Config:
 		with open(FILE) as config_file:
 			self.data = json.load(config_file)
 
-	def get_metrics(self):
-		return self.data['metrics']
+	def get_schedd_status_metrics(self):
+		return self.data['schedd_status_metrics']
+
+	def get_schedd_attrib_metrics(self):
+		return self.data['schedd_attrib_metrics']
 	
 	def get_database_url(self):
 		return self.data['databaseURL']

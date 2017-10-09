@@ -9,8 +9,8 @@ class Client:
 		self.database_password = config.get_database_password()
 		self.database_username = config.get_database_username()
 
-	def create_database(self):
-		query = "CREATE DATABASE " + self.database_name
+	def create_database(self, name):
+		query = "CREATE DATABASE " + name
 		url = self.database_url + "/query?"
 		values = {'q': query,
 			  'u': self.database_username,

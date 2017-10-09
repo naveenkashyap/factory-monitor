@@ -2,7 +2,8 @@
 	"password": "ucsandiego",
 	"username": "test",
 	"databaseURL": "http://jmalani.t2.ucsd.edu:8086",
-	"metrics": ["Running", "Held", "Idle"],
+	"schedd_status_metrics": ["Running", "Held", "Idle"], 
+	"schedd_attrib_metrics": ["ClientGlideTotal", "ClientGlideRunning", "ReqIdle"],
 	"databaseName": "Glidein",
 	"measurementName": "Metrics"
 }

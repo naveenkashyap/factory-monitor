@@ -3,3 +3,4 @@
 *.pyc
 outbox.txt
 monitor_output.txt
+factory_monitor_daemon.py
