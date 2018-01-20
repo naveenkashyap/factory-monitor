@@ -1,9 +1,12 @@
 {
+	"factory_name": "gfactory-1",
 	"password": "ucsandiego",
 	"username": "test",
-	"databaseURL": "http://jmalani.t2.ucsd.edu:8086",
-	"schedd_status_metrics": ["Running", "Held", "Idle"], 
-	"schedd_attrib_metrics": ["ClientGlideTotal", "ClientGlideRunning", "ReqIdle"],
-	"databaseName": "Glidein",
-	"measurementName": "Metrics"
+	"database_name": "Glidein",
+	"database_URL": "http://jmalani.t2.ucsd.edu:8086",
+	"measurement_name": "Metrics",
+	"client_metrics" : ["GlideIdle", "GlideRunning", "GlideTotal"],
+	"requested_metrics" : ["Idle"],
+	"status_metrics": ["Running", "Held", "Idle", "Pending", "IdleOther"], 
+	"schedd_status_location": "/var/lib/gwms-factory/web-area/monitor/"
 }
