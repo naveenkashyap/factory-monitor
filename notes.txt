@@ -7,14 +7,17 @@
 # Step 2
 # Unkown -> idleOther
 # Pending -> pending
-^^DONE^^
 # Waiting -> Idle - Pending (Calc on Grafana -- need to upgrade Grafana and influxDB. Current version cannot handle this)
 
+^^DONE^^
 # Step 3
 # FactoryCompletedStats
 # trace how schedd_status is created (call stack -- explore ctags for vim)
 # Go into github to find how the rrds are being created (Log_Completed_Stats Log_Completed_WasteTime Log_Completed)
 # this might be similar to how schedd_status.xml is created in parallel with status_attributes.rrd is created
+# line 1069, /usr/lib/python2.6/site-packages/glideinwms/factory
+
+in write_file(), update rrds. Loop through 
 
 # Step 4
 # Duplicate to rabbitMQ
