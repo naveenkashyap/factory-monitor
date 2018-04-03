@@ -8,8 +8,8 @@ class Config:
 		with open(FILE) as config_file:
 			self.data = json.load(config_file)
 
-	def get_schedd_status_location(self):
-		return self.data['schedd_status_location']
+	def get_monitor_dir(self):
+		return self.data['monitor_dir']
 	
 	def get_client_metrics(self):
 		return self.data['client_metrics']

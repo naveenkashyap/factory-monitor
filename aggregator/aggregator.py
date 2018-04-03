@@ -1,21 +1,39 @@
+import json
 try:
     import xml.etree.cElementTree as ET
 except ImportError:
     import xml.etree.ElementTree as ET
 
 SCHEDD_STATUS_FILE = "schedd_status.xml"
+COMPLETED_DATA_FILE = "completed_data.json"
 
 # TODO abstract xml parsing from aggregator
 class Aggregator:
 	def __init__(self, config):
 		self.config = config
+		self.monitor_dir = config.get_monitor_dir()
 
 	def aggregate_factory_data(self):
-		filename = self.config.get_schedd_status_location() + SCHEDD_STATUS_FILE
-		schedd_status_data = self.aggregate_schedd_data(filename)
+		schedd_filename = self.monitor_dir + SCHEDD_STATUS_FILE
+		completed_filename = self.monitor_dir + COMPLETED_DATA_FILE
+		schedd_status_data = self.aggregate_schedd_data(schedd_filename)
+		completed_data = self.aggregate_completed_data(completed_filename)
 		# TODO error handle
-		
+
 		return schedd_status_data
+
+	def aggregate_completed_data(self, filename):
+		factory_data = dict()
+		try:
+			completed_data_fp = open(filename)
+		except IOError as e:
+			print str(e)
+			return -1
+
+		completed_data = json.load(completed_data_fp)
+		for entry in completed_data['stats']['entries']:
+			print entry
+
 
 	def aggregate_schedd_data(self, filename):
 		factory_data = dict()

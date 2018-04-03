@@ -8,5 +8,5 @@
 	"client_metrics" : ["GlideIdle", "GlideRunning", "GlideTotal"],
 	"requested_metrics" : ["Idle"],
 	"status_metrics": ["Running", "Held", "Idle", "Pending", "IdleOther"], 
-	"schedd_status_location": "/var/lib/gwms-factory/web-area/monitor/"
+	"monitor_dir": "/var/lib/gwms-factory/web-area/monitor/"
 }
