@@ -50,7 +50,7 @@ class InfluxMessenger(Messenger):
 
 				metric_fragment = ""
 				for metric_name, metric_data in frontend_data.items():
-					metric_fragment += metric_name + "=" + metric_data + ","
+					metric_fragment += str(metric_name) + "=" + str(metric_data) + ","
 				line = self.measurement_name + "," + \
 					factory_fragment + "," + \
 					entry_fragment + "," + \
