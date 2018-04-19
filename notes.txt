@@ -9,7 +9,6 @@
 # Pending -> pending
 # Waiting -> Idle - Pending (Calc on Grafana -- need to upgrade Grafana and influxDB. Current version cannot handle this)
 
-^^DONE^^
 # Step 3
 # FactoryCompletedStats
 # trace how schedd_status is created (call stack -- explore ctags for vim)
@@ -18,6 +17,7 @@
 # line 1069, /usr/lib/python2.6/site-packages/glideinwms/factory
 
 in write_file(), update rrds. Loop through 
+^^DONE^^
 
 # Step 4
 # Duplicate to rabbitMQ
