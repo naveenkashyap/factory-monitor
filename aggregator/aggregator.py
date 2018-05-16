@@ -1,3 +1,4 @@
+import logging
 import json
 try:
     import xml.etree.cElementTree as ET
@@ -14,11 +15,23 @@ class Aggregator:
 		self.monitor_dir = config.get_monitor_dir()
 
 	def aggregate_factory_data(self):
+
 		schedd_filename = self.monitor_dir + SCHEDD_STATUS_FILE
 		completed_filename = self.monitor_dir + COMPLETED_DATA_FILE
+
+		# aggregate schedd_status
 		schedd_status_data = self.aggregate_schedd_data(schedd_filename)
+		if schedd_status_data is None:
+			log_error("schedd_status_data returned None")
+			return None
+		log_debug("successfully aggregated schedd_status")
+
+		# aggregate completed_data
 		completed_data = self.aggregate_completed_data(completed_filename)
-		# TODO error handle
+		if completed_data is None:
+			log_error("completed_data returned None")
+			return None
+		log_debug("successfully aggregated completed_data")
 
 		merged_dicts = merge_dicts([schedd_status_data, completed_data])
 
@@ -26,13 +39,16 @@ class Aggregator:
 
 	def aggregate_completed_data(self, filename):
 		factory_data = dict()
+		completed_data = dict()
 		try:
 			completed_data_fp = open(filename)
+			completed_data = json.load(completed_data_fp)
 		except IOError as e:
-			print str(e)
-			return -1
+			log_error(str(e))
+			return None
+		finally:
+			completed_data_fp.close()
     
-		completed_data = json.load(completed_data_fp)
 		entries = completed_data['stats']['entries']
 		for entry_name in entries:
 			entry_data = dict()
@@ -62,8 +78,8 @@ class Aggregator:
 				entry_data = dict()
 				entry_name = elem.get("name")
 				if entry_name is None:
-					print "Malformed XML: an entry does not have a name attribute"
-					return "malformed_xml"
+					log_error("Malformed XML: an entry does not have a name attribute")
+					return None
 			# skip totals for each entry
 			elif event == 'start' and elem.tag == 'total':
 				while(event != 'end' or elem.tag != 'total'):
@@ -74,8 +90,8 @@ class Aggregator:
 				frontend_data = dict()
 				frontend_name = elem.get("name") 
 				if frontend_name is None:
-					print "Malformed XML: frontend in entry %s does not have a name attribute" % entry_name
-					return "malformed_xml"
+					log_error("Malformed XML: frontend in entry %s does not have a name attribute" % entry_name)
+					return None
 
 			elif event == 'start' and elem.tag == 'ClientMonitor':
 					#for metric in self.config.get_client_metrics():
@@ -105,6 +121,12 @@ class Aggregator:
 				return factory_data
 			else:
                 		elem.clear()
+
+def log_debug(msg):
+	logging.debug("DEBUG: aggregator.py: %s" % msg)
+
+def log_error(msg):
+	logging.error("DEBUG: aggregator.py: %s" % msg)
 
 def merge_dicts(dicts):
 	if len(dicts) <= 1:

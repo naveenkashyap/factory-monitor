@@ -11,15 +11,6 @@ class Config:
 	def get_monitor_dir(self):
 		return self.data['monitor_dir']
 	
-	def get_client_metrics(self):
-		return self.data['client_metrics']
-
-	def get_requested_metrics(self):
-		return self.data['requested_metrics']
-
-	def get_status_metrics(self):
-		return self.data['status_metrics']
-	
 	def get_database_url(self):
 		return self.data['database_URL']
 	
@@ -37,3 +28,6 @@ class Config:
 
 	def get_current_factory_name(self):
 		return self.data['factory_name']
+
+	def get_logfile_loc(self):
+		return self.data['logfile_loc']

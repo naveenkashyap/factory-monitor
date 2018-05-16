@@ -5,8 +5,6 @@
 	"database_name": "Glidein",
 	"database_URL": "http://jmalani.t2.ucsd.edu:8086",
 	"measurement_name": "Metrics",
-	"client_metrics" : ["GlideIdle", "GlideRunning", "GlideTotal"],
-	"requested_metrics" : ["Idle"],
-	"status_metrics": ["Running", "Held", "Idle", "Pending", "IdleOther"], 
-	"monitor_dir": "/var/lib/gwms-factory/web-area/monitor/"
+	"monitor_dir": "/var/lib/gwms-factory/web-area/monitor/",
+	"logfile_loc": "/var/log/gwms-factory/server/factory/factory_monitor.log"
 }

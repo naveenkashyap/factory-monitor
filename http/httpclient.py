@@ -1,5 +1,6 @@
 import urllib
 import urllib2
+import logging
 
 class Client:
 	def __init__(self, config):
@@ -27,7 +28,19 @@ class Client:
 			  'u': self.database_username,
 			  'p': self.database_password }
 		url += urllib.urlencode(values)
+		log_debug("sending data to: %s" % str(url))
 		req = urllib2.Request(url, data)
 		resp = urllib2.urlopen(req)
+
+		if resp.getcode() < 200 or resp.getcode() > 299:
+			log_error("sending data to database returned with an error: %s" % resp.getcode())
+			return
+
+		log_debug("response received: %s" % str(resp.getcode()))
 		# TODO error handle
 		
+def log_debug(msg):
+	logging.debug("DEBUG: httpclient.py: %s" % msg)
+
+def log_error(msg):
+	logging.error("DEBUG: httpclient.py: %s" % msg)
