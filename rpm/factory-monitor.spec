@@ -4,7 +4,7 @@ Release:        1%{?dist}
 Summary: Visualizes Condor Factory meta data in Grafana
 License: Apache 2.0
 
-Source0:	%{name}-%{version}.tgz
+Source0:	%{name}-%{version}.tar.gz
 BuildArch:  noarch
 
 Requires: python
