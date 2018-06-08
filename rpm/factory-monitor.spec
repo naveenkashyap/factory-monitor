@@ -1,5 +1,5 @@
 Name:           factory-monitor
-Version:        1.0
+Version:        1.2
 Release:        1%{?dist}
 Summary: Visualizes Condor Factory meta data in Grafana
 License: Apache 2.0
