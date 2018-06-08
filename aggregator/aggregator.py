@@ -94,15 +94,12 @@ class Aggregator:
 					return None
 
 			elif event == 'start' and elem.tag == 'ClientMonitor':
-					#for metric in self.config.get_client_metrics():
 					for metric, value in elem.items():
 						frontend_data["client_" + metric] = value
 			elif event == 'start' and elem.tag == 'Requested':
-					#for metric in self.config.get_requested_metrics():
 					for metric, value in elem.items():
 						frontend_data["requested_" + metric] = value
 			elif event == 'start' and elem.tag == 'Status':
-					#for metric in self.config.get_status_metrics():
 					for metric, value in elem.items():
 						frontend_data["status_" + metric] = value
 	
@@ -126,7 +123,7 @@ def log_debug(msg):
 	logging.debug("DEBUG: aggregator.py: %s" % msg)
 
 def log_error(msg):
-	logging.error("DEBUG: aggregator.py: %s" % msg)
+	logging.error("ERROR: aggregator.py: %s" % msg)
 
 def merge_dicts(dicts):
 	if len(dicts) <= 1:

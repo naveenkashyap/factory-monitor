@@ -5,10 +5,22 @@ import logging
 class Client:
 	def __init__(self, config):
 		self.config = config
+
 		self.database_url = config.get_database_url()
+		if self.database_url is None:
+			log_error("configuration file not set")
+
 		self.database_name = config.get_database_name()
+		if self.database_name is None:
+			log_error("configuration file not set")
+
 		self.database_password = config.get_database_password()
+		if self.database_password is None:
+			log_error("configuration file not set")
+
 		self.database_username = config.get_database_username()
+		if self.database_username is None:
+			log_error("configuration file not set")
 
 	def create_database(self, name):
 		query = "CREATE DATABASE " + name
@@ -43,4 +55,4 @@ def log_debug(msg):
 	logging.debug("DEBUG: httpclient.py: %s" % msg)
 
 def log_error(msg):
-	logging.error("DEBUG: httpclient.py: %s" % msg)
+	logging.error("ERROR: httpclient.py: %s" % msg)

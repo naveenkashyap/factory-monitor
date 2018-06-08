@@ -6,9 +6,19 @@ class Messenger:
 	def __init__(self, config):
 		self.config = config
 		self.httpclient = httpclient.Client(config)
+
 		self.measurement_name = config.get_measurement_name()
+		if self.measurement_name is None:
+			log_error("configuration file not set")
+
 		self.database_name = config.get_database_name()
+		if self.database_name is None:
+			log_error("configuration file not set")
+
 		self.current_factory = config.get_current_factory_name()
+		if self.current_factory is None:
+			log_error("configuration file not set")
+
 		self.dir_path = os.path.dirname(os.path.realpath(__file__))
 
 class InfluxMessenger(Messenger):
@@ -80,5 +90,5 @@ def log_debug(msg):
 	logging.debug("DEBUG: messenger.py: %s" % msg)
 
 def log_error(msg):
-	logging.error("DEBUG: messenger.py: %s" % msg)
+	logging.error("ERROR: messenger.py: %s" % msg)
 

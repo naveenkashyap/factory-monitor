@@ -1,3 +1,4 @@
+#!/usr/bin/python
 from aggregator import aggregator 
 from messenger import messenger 
 from config import config

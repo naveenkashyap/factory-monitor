@@ -1,10 +1,10 @@
 {
-	"factory_name": "glidein-1",
-	"password": "ucsandiego",
-	"username": "test",
-	"database_name": "Glidein",
-	"database_URL": "http://jmalani.t2.ucsd.edu:8086",
-	"measurement_name": "Metrics",
+	"factory_name": "",
+	"password": "",
+	"username": "",
+	"database_name": "",
+	"database_URL": "",
+	"measurement_name": "",
 	"monitor_dir": "/var/lib/gwms-factory/web-area/monitor/",
 	"logfile_loc": "/var/log/gwms-factory/server/factory/factory_monitor.log"
 }
