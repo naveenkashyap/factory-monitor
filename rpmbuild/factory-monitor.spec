@@ -40,7 +40,7 @@ mkdir -p %{buildroot}/etc/logrotate.d
 
 install -m 777 init.d/factory-monitor %{buildroot}/etc/init.d/
 install -m 777 logrotate/factory-monitor %{buildroot}/etc/logrotate.d/
-install -m 777 crontab/factory-monitor %{buildroot}/var/lib/factory-monitor/crontab/
+install -m 644 crontab/factory-monitor %{buildroot}/var/lib/factory-monitor/crontab/
 install -m 777 monitor.py %{buildroot}/var/lib/factory-monitor/
 install -m 777 aggregator/*.py %{buildroot}/var/lib/factory-monitor/aggregator/
 install -m 777 config/*.py %{buildroot}/var/lib/factory-monitor/config/
