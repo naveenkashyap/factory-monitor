@@ -1,5 +1,5 @@
 Name:           factory-monitor
-Version:        1.3.2
+Version:        1.3.3
 Release:        1%{?dist}
 Summary:        Visualizes Condor Factory meta data in Grafana
 License:        Apache 2.0
@@ -40,7 +40,7 @@ mkdir -p $RPM_BUILD_ROOT%{_sysconfdir}/logrotate.d/
 install -m 777 logrotate/%{name} $RPM_BUILD_ROOT%{_sysconfdir}/logrotate.d/
 install -m 644 crontab/%{name} $RPM_BUILD_ROOT%{python2_sitelib}/%{name}/crontab/
 install -m 777 monitor.py $RPM_BUILD_ROOT%{python2_sitelib}/%{name}/
-install -m 777 aggregator/*.py $RPM_BUILD_ROOT%{python2_sitelib}%{name}/aggregator/
+install -m 777 aggregator/*.py $RPM_BUILD_ROOT%{python2_sitelib}/%{name}/aggregator/
 install -m 777 config/*.py $RPM_BUILD_ROOT%{python2_sitelib}/%{name}/config/
 install -m 777 config/config.json $RPM_BUILD_ROOT%{python2_sitelib}/%{name}/config/
 install -m 777 http/*.py $RPM_BUILD_ROOT%{python2_sitelib}/%{name}/http/
@@ -65,6 +65,6 @@ install -m 777 messenger/*.py $RPM_BUILD_ROOT%{python2_sitelib}/%{name}/messenge
 %dir %{python2_sitelib}/%{name}/messenger/outbox/
 
 %changelog
-* Mon Jun 11 2018 Edgar Fajardo <emfajard@ucsd.edu> - 1.3.2-1
-- Create logrotate on the spec file
+* Mon Jun 11 2018 Edgar Fajardo <emfajard@ucsd.edu> - 1.3.3-1
+- First rpm release
 
