@@ -1,3 +1,5 @@
+%define systemddir %{_prefix}/lib/systemd/system
+
 Name:           factory-monitor
 Version:        1.3.4
 Release:        1%{?dist}
@@ -48,7 +50,7 @@ install -m 777 messenger/*.py $RPM_BUILD_ROOT%{python2_sitelib}/%{name}/messenge
 %files
 %defattr(-,root,root,-)
 %if %{?rhel}%{!?rhel:0} == 7
-%attr(0644, root, root) %{systemddir}/%{name}
+%{systemddir}/%{name}
 %else
 %{_initrddir}/%{name}
 %endif
@@ -68,6 +70,6 @@ install -m 777 messenger/*.py $RPM_BUILD_ROOT%{python2_sitelib}/%{name}/messenge
 %dir %{python2_sitelib}/%{name}/messenger/outbox/
 
 %changelog
-* Mon Jun 11 2018 Edgar Fajardo <emfajard@ucsd.edu> - 1.3.4-1
+* Mon Jun 11 2018 Edgar Fajardo <emfajard@ucsd.edu> - 1.3.5-1
 - First rpm release
 
