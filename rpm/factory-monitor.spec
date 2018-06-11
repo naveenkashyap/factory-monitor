@@ -1,5 +1,5 @@
 Name:           factory-monitor
-Version:        1.2
+Version:        1.3
 Release:        1%{?dist}
 Summary: Visualizes Condor Factory meta data in Grafana
 License: Apache 2.0
@@ -9,6 +9,9 @@ BuildArch:  noarch
 
 Requires: python
 Requires: glideinwms-factory
+
+%{?systemd_requires}
+BuildRequires: systemd
 
 %description
 This monitor aggregates data accumulated by the factory and sends it to a database
