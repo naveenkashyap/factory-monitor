@@ -1,7 +1,7 @@
 %define systemddir %{_prefix}/lib/systemd/system
 
 Name:           factory-monitor
-Version:        1.3.4
+Version:        1.3.5
 Release:        1%{?dist}
 Summary:        Visualizes Condor Factory meta data in Grafana
 License:        Apache 2.0
