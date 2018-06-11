@@ -1,5 +1,5 @@
 Name:           factory-monitor
-Version:        1.3.3
+Version:        1.3.4
 Release:        1%{?dist}
 Summary:        Visualizes Condor Factory meta data in Grafana
 License:        Apache 2.0
@@ -33,7 +33,6 @@ install -d $RPM_BUILD_ROOT/%{systemddir}
 install -m 0644 init.d/%{name} $RPM_BUILD_ROOT/%{systemddir}/
 %else
 install -d $RPM_BUILD_ROOT%{_initrddir}
-install -d $RPM_BUILD_ROOT%{_sysconfdir}/cron.d
 install -m 0755 init.d/%{name} $RPM_BUILD_ROOT%{_initrddir}/
 %endif
 mkdir -p $RPM_BUILD_ROOT%{_sysconfdir}/logrotate.d/
@@ -48,7 +47,11 @@ install -m 777 messenger/*.py $RPM_BUILD_ROOT%{python2_sitelib}/%{name}/messenge
 
 %files
 %defattr(-,root,root,-)
-%{_sysconfdir}/init.d/%{name}
+%if %{?rhel}%{!?rhel:0} == 7
+%attr(0644, root, root) %{systemddir}/%{name}
+%else
+%{_initrddir}/%{name}
+%endif
 %{_sysconfdir}/logrotate.d/%{name}
 %{python2_sitelib}/%{name}/crontab/%{name}
 %{python2_sitelib}/%{name}/monitor.py*
@@ -65,6 +68,6 @@ install -m 777 messenger/*.py $RPM_BUILD_ROOT%{python2_sitelib}/%{name}/messenge
 %dir %{python2_sitelib}/%{name}/messenger/outbox/
 
 %changelog
-* Mon Jun 11 2018 Edgar Fajardo <emfajard@ucsd.edu> - 1.3.3-1
+* Mon Jun 11 2018 Edgar Fajardo <emfajard@ucsd.edu> - 1.3.4-1
 - First rpm release
 
