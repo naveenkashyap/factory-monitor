@@ -10,9 +10,6 @@ BuildArch:  noarch
 Requires: python
 Requires: glideinwms-factory
 
-%{?systemd_requires}
-BuildRequires: systemd
-
 %description
 This monitor aggregates data accumulated by the factory and sends it to a database
 to be visualized by Grafana. InfluxDB is one of the supported databases.
@@ -32,7 +29,16 @@ exit 0
 %install
 mkdir -p $RPM_BUILD_ROOT%{python2_sitelib}/%{name}/{aggregator,config,http,messenger/outbox,crontab}
 
-install -m 777 init.d/%{name} $RPM_BUILD_ROOT%{_sysconfdir}/init.d/
+%if %{?rhel}%{!?rhel:0} == 7
+install -d $RPM_BUILD_ROOT/%{systemddir}
+install -m 0644 init.d/%{name} $RPM_BUILD_ROOT/%{systemddir}/
+%else
+install -d $RPM_BUILD_ROOT%{_initrddir}
+install -d $RPM_BUILD_ROOT%{_sysconfdir}/cron.d
+install -m 0755 init.d/%{name} $RPM_BUILD_ROOT%{_initrddir}/
+%endif
+
+
 install -m 777 logrotate/%{name} $RPM_BUILD_ROOT%{_sysconfdir}/logrotate.d/
 install -m 644 crontab/%{name} $RPM_BUILD_ROOT%{python2_sitelib}/%{name}/crontab/
 install -m 777 monitor.py $RPM_BUILD_ROOT%{python2_sitelib}/%{name}/
