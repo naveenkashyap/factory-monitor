@@ -1,3 +1,0 @@
-* * * * * root /usr/lib/python2.6/site-packages/factory-monitor/monitor.py & >/dev/null 2>&1
-* * * * * root (sleep 30; /usr/lib/python2.6/site-packages/factory-monitor/monitor.py & >/dev/null 2>&1)
-

@@ -1,7 +1,7 @@
 %define systemddir %{_prefix}/lib/systemd/system
 
-Name:           factory-monitor
-Version:        1.3.5
+Name:           glideinwms-factory-monitor
+Version:        1.4
 Release:        1%{?dist}
 Summary:        Visualizes Condor Factory meta data in Grafana
 License:        Apache 2.0
@@ -72,4 +72,5 @@ install -m 777 messenger/*.py $RPM_BUILD_ROOT%{python2_sitelib}/%{name}/messenge
 %changelog
 * Mon Jun 11 2018 Edgar Fajardo <emfajard@ucsd.edu> - 1.3.5-1
 - First rpm release
-
+* Mon Jun 11 2018 Naveen Kashyap <nkashyap@ucsd.edu> - 1.4-1
+- Change service name (factory-monitor -> glideinwms-factory-monitor)
