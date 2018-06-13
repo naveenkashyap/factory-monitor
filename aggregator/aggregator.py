@@ -55,12 +55,21 @@ class Aggregator:
 			frontends = entries[entry_name]['frontends']
 			for frontend_name in frontends:
 				frontend_data = dict()
+				completed_total = 0
+				completed_stats_total = 0
+				completed_wastetime_total = 0
 				for metric, value in frontends[frontend_name]['completed']['stats'].items():
 					frontend_data['completed_' + metric] = value
+					completed_total += value
+				frontend_data['completed_total'] = completed_total
 				for metric, value in frontends[frontend_name]['completed_stats']['stats'].items():
 					frontend_data['completed_stats_' + metric] = value
+					completed_stats_total += value
+				frontend_data['completed_stats_total'] = completed_stats_total
 				for metric, value in frontends[frontend_name]['completed_wastetime']['stats'].items():
 					frontend_data['completed_wastetime_' + metric] = value
+					completed_wastetime_total += value
+				frontend_data['completed_wastetime_total'] = completed_wastetime_total
 				entry_data[frontend_name] = frontend_data
 			factory_data[entry_name] = entry_data
 		return factory_data
