@@ -1,7 +1,7 @@
 %define systemddir %{_prefix}/lib/systemd/system
 
 Name:           glideinwms-factory-monitor
-Version:        1.4
+Version:        1.5
 Release:        1%{?dist}
 Summary:        Visualizes Condor Factory meta data in Grafana
 License:        Apache 2.0
@@ -40,7 +40,7 @@ install -m 0755 init.d/%{name} $RPM_BUILD_ROOT%{_initrddir}/
 mkdir -p $RPM_BUILD_ROOT%{_sysconfdir}/logrotate.d/
 install -m 777 logrotate/%{name} $RPM_BUILD_ROOT%{_sysconfdir}/logrotate.d/
 install -m 644 crontab/%{name} $RPM_BUILD_ROOT%{python2_sitelib}/%{name}/crontab/
-install -m 777 monitor.py $RPM_BUILD_ROOT%{python2_sitelib}/%{name}/
+install -m 777 monitor.py $RPM_BUILD_ROOT%{_bindir}/
 install -m 777 aggregator/*.py $RPM_BUILD_ROOT%{python2_sitelib}/%{name}/aggregator/
 install -m 777 config/*.py $RPM_BUILD_ROOT%{python2_sitelib}/%{name}/config/
 install -m 777 config/config.json $RPM_BUILD_ROOT%{python2_sitelib}/%{name}/config/
@@ -56,7 +56,7 @@ install -m 777 messenger/*.py $RPM_BUILD_ROOT%{python2_sitelib}/%{name}/messenge
 %endif
 %{_sysconfdir}/logrotate.d/%{name}
 %{python2_sitelib}/%{name}/crontab/%{name}
-%{python2_sitelib}/%{name}/monitor.py*
+%{_bindir}/monitor.py*
 %{python2_sitelib}/%{name}/aggregator/*.py*
 %{python2_sitelib}/%{name}/config/*.py*
 %config(noreplace) %{python2_sitelib}/%{name}/config/config.json

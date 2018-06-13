@@ -1,7 +1,7 @@
 #!/usr/bin/python
-from aggregator import aggregator 
-from messenger import messenger 
-from config import config
+import aggregator.aggregator as aggregator
+import messenger.messenger as messenger
+import config.config as config
 import logging
 
 def main():
