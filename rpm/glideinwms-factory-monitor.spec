@@ -1,7 +1,7 @@
 %define systemddir %{_prefix}/lib/systemd/system
 
 Name:           glideinwms-factory-monitor
-Version:        1.5.1
+Version:        1.5.2
 Release:        1%{?dist}
 Summary:        Visualizes Condor Factory meta data in Grafana
 License:        Apache 2.0
@@ -38,7 +38,7 @@ install -d $RPM_BUILD_ROOT%{_initrddir}
 install -m 0755 init.d/%{name} $RPM_BUILD_ROOT%{_initrddir}/
 %endif
 mkdir -p $RPM_BUILD_ROOT%{_sysconfdir}/logrotate.d/
-mkdir -p $RPM_BUILD_ROOT%%{_bindir}/
+mkdir -p $RPM_BUILD_ROOT%{_bindir}/
 install -m 777 logrotate/%{name} $RPM_BUILD_ROOT%{_sysconfdir}/logrotate.d/
 install -m 644 crontab/%{name} $RPM_BUILD_ROOT%{python2_sitelib}/%{name}/crontab/
 install -m 777 monitor.py $RPM_BUILD_ROOT%{_bindir}/
@@ -71,7 +71,7 @@ install -m 777 messenger/*.py $RPM_BUILD_ROOT%{python2_sitelib}/%{name}/messenge
 %dir %{python2_sitelib}/%{name}/messenger/outbox/
 
 %changelog
-* Wed Jun 13 2018 Edgar Fajardo <emfajard@ucsd.edu> - 1.5.1-1
+* Wed Jun 13 2018 Edgar Fajardo <emfajard@ucsd.edu> - 1.5.2-2
 - Make directory for binaries during install
 - Correct order on the changelog
 * Mon Jun 11 2018 Naveen Kashyap <nkashyap@ucsd.edu> - 1.4-1
